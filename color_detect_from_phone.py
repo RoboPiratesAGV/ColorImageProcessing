@@ -122,10 +122,10 @@ while True:
         area = cv2.contourArea(contour)
         if area > 300:
             x, y, w, h = cv2.boundingRect(contour)
-            imageFrame = cv2.rectangle(imageFrame, (x, y), (x + w, y + h), (255,255,0), 2)
+            imageFrame = cv2.rectangle(imageFrame, (x, y), (x + w, y + h), (0, 255, 255), 2)
             cv2.putText(imageFrame, "Yellow Colour", (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX,
-                        1.0,  (255,255,0))
+                        1.0,  (0, 255, 255))
 
     # # Creating contour to track brown color
     # contours, hierarchy = cv2.findContours(blue_mask,
