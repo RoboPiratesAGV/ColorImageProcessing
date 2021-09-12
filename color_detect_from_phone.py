@@ -115,7 +115,7 @@ while True:
                         1.0, (255, 0, 0))
 
     # Creating contour to track yellow color
-    contours, hierarchy = cv2.findContours(blue_mask,
+    contours, hierarchy = cv2.findContours(yellow_mask,
                                            cv2.RETR_TREE,
                                            cv2.CHAIN_APPROX_SIMPLE)
     for pic, contour in enumerate(contours):
