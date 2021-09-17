@@ -6,7 +6,7 @@ import requests
 
 # Replace the IPv4 in the below URL with the correct one.
 # Make sure to add "/shot.jpg" at last.
-url = "http://192.168.0.101:8080/shot.jpg"
+url = "http://192.168.43.1:8080/shot.jpg"
 
 
 while True:
@@ -76,10 +76,16 @@ while True:
             imageFrame = cv2.rectangle(imageFrame, (x, y), 
                                        (x + w, y + h), 
                                        (0, 0, 255), 2)
+            hsvFrame = cv2.rectangle(hsvFrame, (x, y),
+                                       (x + w, y + h),
+                                       (0, 0, 255), 2)
               
             cv2.putText(imageFrame, "Red Colour", (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX, 1.0,
-                        (0, 0, 255))    
+                        (0, 0, 255))
+            cv2.putText(hsvFrame, "Red Colour", (x, y),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.0,
+                        (0, 0, 255))
 
     # Creating contour to track green color
     contours, hierarchy = cv2.findContours(green_mask,
@@ -93,8 +99,14 @@ while True:
             imageFrame = cv2.rectangle(imageFrame, (x, y), 
                                        (x + w, y + h),
                                        (0, 255, 0), 2)
-              
+            hsvFrame = cv2.rectangle(hsvFrame, (x, y),
+                                       (x + w, y + h),
+                                       (0, 255, 0), 2)
+
             cv2.putText(imageFrame, "Green Colour", (x, y),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        1.0, (0, 255, 0))
+            cv2.putText(hsvFrame, "Green Colour", (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX, 
                         1.0, (0, 255, 0))
 
@@ -109,10 +121,17 @@ while True:
             imageFrame = cv2.rectangle(imageFrame, (x, y),
                                        (x + w, y + h),
                                        (255, 0, 0), 2)
+            hsvFrame = cv2.rectangle(hsvFrame, (x, y),
+                                       (x + w, y + h),
+                                       (255, 0, 0), 2)
               
             cv2.putText(imageFrame, "Blue Colour", (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX,
                         1.0, (255, 0, 0))
+            cv2.putText(hsvFrame, "Blue Colour", (x, y),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        1.0, (255, 0, 0))
+
 
     # Creating contour to track yellow color
     contours, hierarchy = cv2.findContours(yellow_mask,
@@ -123,9 +142,13 @@ while True:
         if area > 300:
             x, y, w, h = cv2.boundingRect(contour)
             imageFrame = cv2.rectangle(imageFrame, (x, y), (x + w, y + h), (0, 255, 255), 2)
+            hsvFrame = cv2.rectangle(hsvFrame, (x, y), (x + w, y + h), (0, 255, 255), 2)
             cv2.putText(imageFrame, "Yellow Colour", (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX,
                         1.0,  (0, 255, 255))
+            cv2.putText(hsvFrame, "Yellow Colour", (x, y),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        1.0, (0, 255, 255))
 
     # # Creating contour to track brown color
     # contours, hierarchy = cv2.findContours(blue_mask,
@@ -144,7 +167,9 @@ while True:
     #                     0.7, (0, 75, 150))
 
     # Program Termination
-    cv2.imshow("Multiple Color Detection in Real-TIme", imageFrame)
+    cv2.imshow("BGR", imageFrame)
+    cv2.imshow("HSV", hsvFrame)
+
     if cv2.waitKey(10) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
         break
