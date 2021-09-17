@@ -22,11 +22,6 @@ while True:
     red_upper = np.array([180, 255, 255], np.uint8)
     red_mask = cv2.inRange(hsvFrame, red_lower, red_upper)
 
-    # # obtaining brown mask
-    # brown_lower = np.array([19, 69, 139], np.uint8)
-    # brown_upper = np.array([42, 42, 165], np.uint8)
-    # brown_mask = cv2.inRange(hsvFrame, brown_lower, brown_upper)
-
     # obtaining blue mask
     blue_lower = np.array([100, 130, 4], np.uint8)
     blue_upper = np.array([160, 255, 255], np.uint8)
@@ -42,10 +37,6 @@ while True:
     # For red color
     red_mask = cv2.dilate(red_mask, kernal)
     res_red = cv2.bitwise_and(imageFrame, imageFrame, mask = red_mask)
-
-    # # For brown color
-    # brown_mask = cv2.dilate(brown_mask, kernal)
-    # res_brown = cv2.bitwise_and(imageFrame, imageFrame, mask=brown_mask)
 
     # For green color 
     green_mask = cv2.dilate(green_mask, kernal)
@@ -125,22 +116,6 @@ while True:
                         1.0, (255, 0, 0))
 
 
-
-    # # Creating contour to track brown color
-    # contours, hierarchy = cv2.findContours(blue_mask,
-    #                                        cv2.RETR_TREE,
-    #                                        cv2.CHAIN_APPROX_SIMPLE)
-    # for pic, contour in enumerate(contours):
-    #     area = cv2.contourArea(contour)
-    #     if area > 300:
-    #         x, y, w, h = cv2.boundingRect(contour)
-    #         imageFrame = cv2.rectangle(imageFrame, (x, y),
-    #                                    (x + w, y + h),
-    #                                    (0, 75, 150), 2)
-    #
-    #         cv2.putText(imageFrame, "Brown Colour", (x, y),
-    #                     cv2.FONT_HERSHEY_SIMPLEX,
-    #                     0.7, (0, 75, 150))
 
     # Program Termination
     cv2.imshow("BGR", imageFrame)
