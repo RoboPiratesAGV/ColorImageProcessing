@@ -33,7 +33,7 @@ while True:
     blue_mask = cv2.inRange(hsvFrame, blue_lower, blue_upper)
 
     # obtaining green mask
-    green_lower = np.array([67, 40, 10], np.uint8)
+    green_lower = np.array([67, 45,5], np.uint8)
     green_upper = np.array([70, 255, 255], np.uint8)
     green_mask = cv2.inRange(hsvFrame, green_lower, green_upper)
 
