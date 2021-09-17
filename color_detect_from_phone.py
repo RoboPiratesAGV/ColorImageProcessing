@@ -6,7 +6,7 @@ import requests
 
 # Replace the IPv4 in the below URL with the correct one.
 # Make sure to add "/shot.jpg" at last.
-url = "http://192.168.43.1:8080/shot.jpg"
+url = "http://192.168.0.14:8080/shot.jpg"
 
 
 while True:
@@ -33,7 +33,7 @@ while True:
     blue_mask = cv2.inRange(hsvFrame, blue_lower, blue_upper)
 
     # obtaining green mask
-    green_lower = np.array([40, 40, 40], np.uint8)
+    green_lower = np.array([67, 40, 10], np.uint8)
     green_upper = np.array([70, 255, 255], np.uint8)
     green_mask = cv2.inRange(hsvFrame, green_lower, green_upper)
 
